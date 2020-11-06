@@ -1,0 +1,93 @@
+% allgem. Dokumentenformat
+\documentclass[12pt,landscape,oneside]{book}
+
+
+% deutsche Silbentrennung
+\usepackage[ngerman]{babel}
+
+% Umlaute unter UTF8 nutzen
+
+% Zeichenencoding
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{fix-cm}
+
+% mehrseitige Tabellen ermöglichen
+\usepackage{longtable}
+
+% Packet für Seitenrandabstände und Einstellung für Seitenränder
+\usepackage[left=3cm, right=3cm, top=2.25cm, bottom=2.25cm]{geometry}
+
+% neue Kopfzeilen mit fancypaket
+\usepackage{fancyhdr} %Paket laden
+\pagestyle{fancy} %eigener Seitenstil
+\fancyhf{} %alle Kopf- und Fußzeilenfelder bereinigen
+\fancyhead[L]{\nouppercase{\leftmark}} %Kopfzeile links
+\fancyhead[C]{} %zentrierte Kopfzeile
+\fancyhead[R]{\thepage} %Kopfzeile rechts
+\renewcommand{\headrulewidth}{0.4pt} %obere Trennlinie
+\setlength{\headheight}{15pt}
+
+%Fußnoten
+\usepackage{footnote}
+\usepackage[perpage,symbol,stable]{footmisc}
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+
+
+% für Tabellen
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% Paket für Zeilenabstand
+\usepackage{setspace}
+
+% Verlinkungen innerhalb des Dokuments
+\usepackage[hidelinks]{hyperref}
+\hypersetup{allcolors=black,linktocpage,linktoc=all}
+\newcommand{\recipe}[1]{%
+    \hyperref[sec:#1]{\nameref{sec:#1} (S. \pageref{sec:#1})}
+}
+
+% Nummerirung der Rezepte abschalten
+\setcounter{secnumdepth}{-2}
+
+% Ungetestete Rezepte markieren
+\usepackage[dvipsnames]{xcolor}
+\newcommand{\unverified}[1][UNGEPRÜFTES REZEPT -- Anweisungen ggf. anpassen]{%
+    \centering%
+    \textcolor{yellow}{#1}%
+    \flushleft%
+}
+\newcommand{\wip}[1][WORK IN PROGRESS]{%
+    \centering%
+    \textcolor{red}{#1}%
+    \flushleft%
+}
+
+% weitere Pakete
+% Grafiken aus PNG Dateien einbinden
+\usepackage{graphicx}
+\usepackage{tikzpagenodes}
+
+% Titel- und Rückseite
+\usepackage{pdfpages}
+
+% Hintergrundbilder
+\usepackage{transparent}
+\usepackage{eso-pic}
+
+% Einheiten
+\usepackage{textcomp}
+\newcommand{\cel}[1]{\textbf{#1\textdegree{}C}}
+\newcommand{\mins}[1]{\textbf{#1 min}}
+\newcommand{\std}[1]{\textbf{#1 Std.}}
+
+% Schriftart
+\renewcommand{\familydefault}{\sfdefault}
+\date{}
